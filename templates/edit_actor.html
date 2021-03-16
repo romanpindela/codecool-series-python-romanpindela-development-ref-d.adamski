@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+    <div class="card">
+        <form>
+            <input type="text" value="{{ actor.name }}" id="actorName">
+            <input type="hidden" value="{{ actor.id }}" id="actorId">
+            <input type="submit" value="Change actors name" id="changeActorNameSubmitBtn">
+        </form>
+    </div>
+
+    <script src="{{ url_for("static", filename="js/edit_actor.js") }}" type="module"></script>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+.actors-list{
+    list-style: none;
+}
+
+.actors-list li {
+    margin-top: 5px;
+}
+
+.actors-list strong {
+    font-size: 1.3rem;
+}

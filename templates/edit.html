@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit show
+{% endblock %}
+
+{% block content %}
+    <script src="{{ url_for("static", filename="js/edit_show.js") }}" type="module" defer></script>
+
+    <div class="card">
+        <form action="">
+            <p class="form-element">
+                <label for="show" class="form-element-label">Show: </label>
+                <select name="show" id="showSelect">
+                    <option disabled selected value> -- Select Show -- </option>
+                        {% for show in shows %}
+                            <option value="{{ show.id }}">{{ show.title }}</option>
+                        {% endfor %}
+                </select>
+            </p>
+
+            <p class="form-element">
+                <label for="season" class="form-element-label">Season: </label>
+                <select name="season" disabled id="showSeason" style="min-width: 50px;">
+                    <option disabled selected value> -- Select Season -- </option>
+                </select>
+            </p>
+            <p class="form-element">
+                <label for="episode" class="form-element-label">Episode: </label>
+                <select name="episode" disabled id="showEpisode" style="min-width: 50px;">
+                    <option disabled selected value> -- Select Episode -- </option>
+                </select>
+            </p>
+            <p class="form-element">
+                <label for="title" class="form-element-label">Title: </label>
+                <input type="text" placeholder="What the Pencake?" disabled id="showTitle">
+            </p>
+            <p class="form-element">
+                <label for="showOverview" class="form-element-label">Overview: </label>
+                <textarea cols="20" rows="7" name="showOverview" id="showOverview" placeholder="What the Pancake?" disabled></textarea>
+            </p>
+            <p class="text-center">
+                <button type="submit" id="showEditSubmit" disabled>Submit</button>
+            </p>
+        </form>
+    </div>
+
+{% endblock %}

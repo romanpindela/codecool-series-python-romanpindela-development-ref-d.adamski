@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+{% block title %}{{ show.title }}{% endblock %}
+{% block content %}
+
+    <script src="{{ url_for("static", filename="js/show.js") }}" type="module" defer></script>
+
+    <div class="card detailed-view">
+        <script type="text/javascript">
+            var videoId = '{{ show.trailer_id }}';
+        </script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/embed-youtube.js') }}"></script>
+        <div class="row">
+            <div class="col col-twothird">
+                <h2>{{ show.title }}</h2>
+                <p class="small grayed">{{ show.runtime_str}} <span class="separator">|</span> {{ show.rating_string }}
+                    &#9734;
+                    <span class="separator">|</span>{{ show.genres_list }}</p>
+                <p>{{ show.overview }}</p>
+                <p><b>Stars:</b>&nbsp;
+                    {{ show.characters_str }}
+                </p>
+                <a href="{{ url_for("show_actors", show_id=show.id) }}">Actors list</a>
+            </div>
+            <div {% if show.trailer %} id="player" {% endif %} class="trailer col col-third"></div>
+        </div>
+    </div>
+    <div class="card">
+        <h2>Seasons</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Season number</th>
+                    <th>Title</th>
+                    <th>Overview</th>
+                </tr>
+            </thead>
+            <tbody id="seasonsTable">
+                {% for season in seasons %}
+                    <tr>
+                        <td class="season-number">{{ season.season_number }}</td>
+                        <td>
+                            <a href="{{ url_for("season", show_id=show.id, season_id=season.id) }}">
+                                {{ season.title }}
+                            </a>
+                        </td>
+                        <td>
+                            {% if season.overview %}
+                                {{ season.overview }}
+                            {% else %}
+                                No overview :(
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                {% if "username" in session %}
+                    <tr>
+                        <td>
+                            <i class="fas fa-plus" id="showAddSeasonInputs"></i>
+                            <input type="number" class="hidden" id="seasonNumber" disabled>
+                            <input type="hidden" id="showId" value="{{ show.id }}">
+                        </td>
+                        <td>
+                            <input type="text" class="hidden" id="seasonTitle">
+                        </td>
+                        <td>
+                            <input type="text" class="hidden" id="seasonOverview">
+                            <i class="far fa-plus-square add-season hidden" id="addSeason"></i>
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

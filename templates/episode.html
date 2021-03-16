@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ season.title }} - {{ episode.title }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="card">
+        <h1>{{ show.title }}</h1>
+        <h2>{{ season.title }}</h2>
+        <h3>{{ episode.title }}</h3>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+.add-season{
+    position: relative;
+    top: 3px;
+    font-size: 1.2rem
+}
+
+#newShow{
+    color: #007600;
+    font-size: 1.4rem;
+}
+
+#newShow:hover{
+    color: #0f0;
+    transition: 0.2s;
+}
+
+#seasonNumber{
+    text-align: center;
+}
+
+#seasonTitle{
+    width: 100%;
+}
+
+#seasonOverview{
+    width: 90%;
+}
+
+.hidden{
+    display: none;
+}
+

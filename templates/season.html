@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ show.title }} - {{ season.title }}
+{% endblock %}
+
+{% block content %}
+    <script src="{{ url_for("static", filename="js/season.js") }}" type="module" defer></script>
+
+    <div class="card">
+        <h1>
+            {{ show.title }}
+        </h1>
+        <h3>
+            {{ season.title }}
+        </h3>
+
+        {% if season.overview %}
+            <p>{{ season.overview }}</p>
+        {% else %}
+            <p>--No overview--</p>
+        {% endif %}
+
+        {% if episodes %}
+            <h5>Episodes:</h5>
+            <ul class="episodes-list">
+                {% for episode in episodes %}
+                    <li><a href="{{ url_for("show_episode", season_id=season.id, show_id=show.id, episode_id=episode.id) }}">{{ episode.title }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3>No episodes yet</h3>
+        {% endif %}
+
+        {% if "username" in session %}
+            <i class="fas fa-plus-circle add-icon"></i>
+            <div id="addEpisodeFormWrapper">
+                    <button id="closeAddEpisodeBtn">&times;</button>
+                    <form action="">
+                        <input type="hidden" value="{{ season.id }}" id="seasonNumber">
+                        <p class="form-control">
+                            <label for="episodeNumber" class="form-element-label">Episode number: </label>
+                            <input type="number" min="0" max="30" name="episode-number" id="episodeNumber">
+                            <p id="episodeNumberErrors"></p>
+                        </p>
+                        <p class="form-control">
+                            <label for="episodeTitle" class="form-element-label">Title: </label>
+                            <input type="text" name="episode-title" id="episodeTitle">
+                            <p id="episodeTitleErrors"></p>
+                        </p>
+                        <p class="form-control">
+                            <label for="episodeOverview" class="form-element-label">Overview: </label>
+                            <textarea name="episode-overview" id="episodeOverview" cols="20" rows="5"></textarea>
+                            <p id="episodeOverviewErrors"></p>
+                        </p>
+                        <p class="form-control">
+                            <input type="submit" value="Add" id="episodeSubmit">
+                        </p>
+                    </form>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

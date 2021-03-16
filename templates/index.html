@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block title %}Codecool Series Database{% endblock %}
+{% block content %}
+    <script src="{{ url_for("static", filename="js/search.js") }}" type="module" defer></script>
+
+    <h1 class="title text-center">Welcome page</h1>
+    <div class="card" id="searchWrapper">
+        <input type="text" class="search-input" id="searchMovie" placeholder="Search movie...">
+        <div id="searchResult"></div>
+    </div>
+    <div class="card">
+        <h2>Welcome TV show lovers!</h2>
+        <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
+        <p></p>
+        <p>Okay, actually this is a designed dumb page without any logic.</p>
+        <p>
+            You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for
+            in-depth
+            navigation.
+        </p>
+    </div>
+{% endblock %}
